@@ -1,0 +1,73 @@
+#left{
+    float: left;
+    width: 410px; 
+}
+#left img{
+    width: 406px; 
+ 
+}
+#right{
+    float: left;
+    height: 920px;
+    width: 1200px;
+    position: relative;
+}
+#high{
+    height: 330px;
+    width: 360px;
+    position: absolute;
+    top: 54%;
+    right: 300px;
+    margin-top: -180px;
+    font-size: 20px;
+    padding-top: 30px;
+    border: 1px solid rgb(243, 243, 243);
+    
+}
+#high input{
+    padding-left: 1rem;
+    height: 60px;
+    width: 280px;
+    background: rgb(248, 248, 248);
+    margin-left: 30px;margin-top: 30px;
+}
+#high #button{
+    height: 60px;
+    width: 300px;
+    border: 0 solid #000;
+    background: #ff6700;
+    color: white;
+    margin-left: 30px;margin-top: 30px;
+}
+
+#high .button{
+    height: 60px;
+    width: 130px;
+    color: white;
+
+    border: 0 solid #000;
+    background: #ff6700;
+    
+    margin-left: 30px;margin-top: 30px;
+}
+#high .button a{
+    color: white;
+}
+#high .user1{
+    width: 295px;
+    position: absolute;
+    top: 145px;
+    right: 35px;
+}
+#high .password1{
+    width: 295px;
+    position: absolute;
+    top: 237px;
+    right:35px;
+}
+#high .password2{
+    width: 295px;
+    position: absolute;
+    top: 330px;
+    right: 35px;
+}

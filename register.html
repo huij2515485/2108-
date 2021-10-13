@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/login.css">
+  <title>注册</title>
+
+</head>
+
+<body>
+  <!-- 用户名：<input type="text" name="user" id="user">
+    密码：<input type="password" name="password" is="passwprd">
+    <input type="button" value="注册" onclick="fn(this)"> -->
+
+
+  <div id="left">
+    <img src="https://cdn.web-global.fds.api.mi-img.com/mcfe--mi-account/static/static/media/banner.4994397e.jpg"
+      alt="">
+  </div>
+  <div id="right">
+    <div>
+      <img src="images/logo.png" alt="" style="width: 46px;height: 46px;margin-top: 15px;margin-left:15px;"><span
+        style="line-height: 76px;font-size: 22px;margin-left: 15px;">小米账号</span>
+    </div>
+    <div id="high" style="height: 420px;">
+      <p style="margin-left: 155px;">注册</p>
+      <form action="" method="post">
+        <input type="text" name="username" placeholder="电话号码"> <br>
+        <input type="password" name="password" placeholder="密码"> <br>
+        <input type="password" value="" placeholder="再次输入密码">
+        <input type="button" value="注册" onclick="fn(this)" id="button" disabled style="color: lightgrey;">
+      </form>
+      <div class="user1"></div>
+      <div class="password1"></div>
+      <div class="password2"></div>
+      <a href="login.html" style="margin-left: 30px;">立即登录</a>
+    </div>
+
+
+  </div>
+
+
+
+
+  <script>
+    let inputsObj = document.querySelectorAll('input');
+    let user1 = document.querySelector('.user1');
+    let password1 = document.querySelector('.password1');
+    let password2 = document.querySelector('.password2');
+    
+    let str = '';
+    let x=false;
+    let y=false;
+    let z=false;
+    inputsObj[0].onblur = function () {
+      str = inputsObj[0].value;
+      let reg = /^1[3456789]{1}\d{9}$/;
+      if(!str){
+        user1.innerHTML = '电话号码不能为空';
+        x=false;
+      }
+      else if (reg.test(str)) {
+        user1.innerHTML = '√';
+        x=true;
+      } else {
+        user1.innerHTML = '账号格式不正确';
+        x=false;
+        
+      }
+    }
+    inputsObj[1].onblur = function () {
+      let a = '';
+      let b = '';
+      let c = '';
+      let d = '';
+      str = inputsObj[1].value;
+      let reg4 = /^[\w\W]{6,16}$/
+      let reg1 = /\d+/;
+      let reg2 = /[a-zA-Z]+/;
+      let reg3 = /[^a-zA-Z\d]+/;
+      a = reg1.test(str);
+      b = reg2.test(str);
+      c = reg3.test(str);
+      d = reg4.test(str);
+      // console.log(a, b, c, d);
+      if(!str){
+        password1.innerHTML = '密码不能为空';
+        y=false;
+      }
+      else if (d && (a && b && c)) {
+        password1.innerHTML = '密码强度:强';
+        y=true;
+      } else if (d && ((a && b) || (a && c) || (b && c))) {
+        password1.innerHTML = '密码强度:中';
+        y=true;
+      } else if (d && (a || b || c)) {
+        password1.innerHTML = '密码强度:弱';
+        y=true;
+      } else {
+        password1.innerHTML = '密码格式不正确';
+        y=false;
+       
+      }
+    }
+    inputsObj[2].onchange = function () {
+
+      if (inputsObj[1].value == inputsObj[2].value) {
+        password2.innerHTML = '√';
+        z=true;
+      } else {
+        password2.innerHTML = '两次密码输入不一致';
+        z=false;
+        
+      }
+ if(z&&y&&z){
+let button1=document.getElementById('button');
+      button1.disabled=false;
+      button1.style.color="white"
+ }
+    }
+ 
+    function fn(that) {
+    let user = inputsObj[0].value;
+    let pwd = inputsObj[1].value;
+        console.log(user,pwd);
+      ajax(user, pwd);
+    }
+
+    function ajax(user, pwd) {
+      // console.log(user,pwd);
+      //1 实例化对象
+      let xhr = new XMLHttpRequest();
+      // 2 打开请求
+      //   console.log(xhr);
+      xhr.open('post', 'register.php');
+
+      // 发送之前设置请求头,告诉浏览器当前参数的编码方式
+      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+      // 构造参数  两个参数之间使用&连接
+      let param = 'user=' + user + '&' + 'pwd=' + pwd;
+      // 3 发送请求
+      // console.log(param);
+      // console.log(xhr.open);
+
+      // console.log(xhr.send);
+      xhr.send(param);
+      // 4 监听且接收返回值
+
+      xhr.onreadystatechange = function () {
+
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          //   console.log(xhr.status);
+          //   console.log(xhr.readyState);
+          // console.log(xhr.response);  
+
+          if (xhr.response == 1) {
+            alert('注册成功')
+          } else {
+            alert('用户名已经被使用')
+          }
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>

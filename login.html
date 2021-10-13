@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="left">
+    <img src="https://cdn.web-global.fds.api.mi-img.com/mcfe--mi-account/static/static/media/banner.4994397e.jpg"
+      alt="">
+  </div>
+  <div id="right">
+    <div>
+      <img src="images/logo.png" alt="" style="width: 46px;height: 46px;margin-top: 15px;margin-left:15px;"><span
+        style="line-height: 76px;font-size: 22px;margin-left: 15px;">小米账号</span>
+    </div>
+    <div id="high">
+      <p style="margin-left: 155px;">登录</p>
+
+      <form action="" method="post">
+
+        <input type="text" name="username" placeholder="邮箱/用户名/电话号码"> <br>
+        <input type="password" name="password" placeholder="密码"> <br>
+        <input type="button" value="登录" onclick="fn(this)" class="button">
+        <button class="button"><a href="register.html">注册</a></button>
+      </form>
+      <div class="user1"></div>
+      <div class="password1"></div>
+      <div class="password2"></div>
+    </div>
+
+
+  </div>
+
+  <script>
+    function fn(that) {
+      let inputsObj = document.querySelectorAll('input');
+      let user = inputsObj[0].value;
+      let pwd = inputsObj[1].value;
+      //   console.log(user,pwd);
+      ajax(user, pwd);
+    }
+
+    function ajax(user, pwd) {
+      console.log(user, pwd);
+      //1 实例化对象
+      let xhr = new XMLHttpRequest();
+      // 2 打开请求
+      //   console.log(xhr);
+      xhr.open('post', 'login.php');
+
+      // 发送之前设置请求头,告诉浏览器当前参数的编码方式
+      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+      // 构造参数  两个参数之间使用&连接
+      let param = 'user=' + user + '&' + 'pwd=' + pwd;
+      // 3 发送请求
+      console.log(param);
+      // console.log(xhr.open);
+
+      // console.log(xhr.send);
+      xhr.send(param);
+      // 4 监听且接收返回值
+
+      xhr.onreadystatechange = function () {
+
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          //   console.log(xhr.status);
+          //   console.log(xhr.readyState);
+          console.log(xhr.response);
+
+          if (xhr.response == 1) {
+            alert('登陆成功')
+            
+          } else {
+            alert('用户名不存在')
+          }
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>
