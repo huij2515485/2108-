@@ -1,10 +1,8 @@
 
 // 获取图片的节点 拿到img的src
-// let img=$$('#shop-left>img');
+
 let name1=$$('#name')
-// let mesge1=$$('#masge1')
-// let price=$$('#price')
-// let mesge2=$$('#mesge2')
+
 
 console.log(name1);
 let pValue=location.search;

@@ -53,3 +53,36 @@ color:#ff6700
 #shopcart tfoot{
     background: #eee;
 }
+#confirm{
+    font-size: 22px;
+    line-height: 42px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -250px;
+    width: 500px;
+    height: 212px;
+    background: rgb(255, 252, 252);
+    /* border: 1px solid #ff6700; */
+    display: none;
+    
+}
+#confirm div{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 500px;
+    background: whitesmoke;
+    height: 40px;
+}
+#confirm button:hover{
+    cursor: pointer;
+
+    color: white;
+    background: #ff6700;
+}
+#confirm button{
+    width: 180px;
+    height: 42px;
+}

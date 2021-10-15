@@ -14,5 +14,5 @@ JSON.parse(cartTop).forEach(data => {
         </tr>`;
 });
 var div=document.querySelector('#cars')
-console.log(div);
+// console.log(div);
 // this.div.innerHTML = html

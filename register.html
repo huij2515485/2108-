@@ -8,6 +8,68 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/login.css">
   <title>注册</title>
+  <style>
+    #confirm1,
+    #confirm2 {
+      font-size: 22px;
+      line-height: 42px;
+      text-align: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -200px;
+      margin-left: -250px;
+      width: 500px;
+      height: 212px;
+      background: rgb(255, 252, 252);
+      /* border: 1px solid #ff6700; */
+      display: none;
+
+    }
+
+    #confirm1 div {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      width: 500px;
+      background: whitesmoke;
+      height: 40px;
+    }
+
+    #confirm1 button:hover {
+      cursor: pointer;
+
+      color: white;
+      background: #ff6700;
+    }
+
+    #confirm1 button {
+      width: 180px;
+      height: 42px;
+    }
+
+    #confirm2 div {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      width: 500px;
+      background: whitesmoke;
+      height: 40px;
+    }
+    #confirm1 button a:hover{
+      color: white;
+
+    }
+    #confirm2 button:hover {
+      cursor: pointer;
+
+      color: white;
+      background: #ff6700;
+    }
+
+    #confirm2 button {
+      width: 180px;
+      height: 42px;
+    }
+  </style>
 
 </head>
 
@@ -37,13 +99,24 @@
       <div class="user1"></div>
       <div class="password1"></div>
       <div class="password2"></div>
-      <a href="login.html" style="margin-left: 30px;">立即登录</a>
+      <!-- <a href="login.html" style="margin-left: 30px;">立即登录</a> -->
     </div>
 
 
   </div>
 
-
+  <div id="confirm1">
+    <p style="line-height: 140px;color: #ff6700;">注册成功!</p>
+    <div>
+      <button id="sure" style="background: #ff6700;color: white;">确认</button>
+      <button id="NOsure"><a href="login.html">立即登录</a></button></div>
+  </div>
+  <div id="confirm2">
+    <p style="line-height: 140px;color: #ff6700;">账号已经被使用！</p>
+    <div>
+      <button id="sure1" style="background: #ff6700;color: white;">确认</button></div>
+    <!-- <button id="NOsure"><a href="login.html">立即登录</a></button> -->
+  </div>
 
 
   <script>
@@ -51,25 +124,28 @@
     let user1 = document.querySelector('.user1');
     let password1 = document.querySelector('.password1');
     let password2 = document.querySelector('.password2');
-    
+    let confirm1 = document.getElementById('confirm1');
+    let confirm2 = document.getElementById('confirm2');
+    let sure = document.getElementById('sure')
+    let sure1= document.getElementById('sure1')
+    let NOsure = document.getElementById('not_sure')
     let str = '';
-    let x=false;
-    let y=false;
-    let z=false;
+    let x = false;
+    let y = false;
+    let z = false;
     inputsObj[0].onblur = function () {
       str = inputsObj[0].value;
       let reg = /^1[3456789]{1}\d{9}$/;
-      if(!str){
+      if (!str) {
         user1.innerHTML = '电话号码不能为空';
-        x=false;
-      }
-      else if (reg.test(str)) {
+        x = false;
+      } else if (reg.test(str)) {
         user1.innerHTML = '√';
-        x=true;
+        x = true;
       } else {
         user1.innerHTML = '账号格式不正确';
-        x=false;
-        
+        x = false;
+
       }
     }
     inputsObj[1].onblur = function () {
@@ -87,46 +163,45 @@
       c = reg3.test(str);
       d = reg4.test(str);
       // console.log(a, b, c, d);
-      if(!str){
+      if (!str) {
         password1.innerHTML = '密码不能为空';
-        y=false;
-      }
-      else if (d && (a && b && c)) {
+        y = false;
+      } else if (d && (a && b && c)) {
         password1.innerHTML = '密码强度:强';
-        y=true;
+        y = true;
       } else if (d && ((a && b) || (a && c) || (b && c))) {
         password1.innerHTML = '密码强度:中';
-        y=true;
+        y = true;
       } else if (d && (a || b || c)) {
         password1.innerHTML = '密码强度:弱';
-        y=true;
+        y = true;
       } else {
         password1.innerHTML = '密码格式不正确';
-        y=false;
-       
+        y = false;
+
       }
     }
     inputsObj[2].onchange = function () {
 
       if (inputsObj[1].value == inputsObj[2].value) {
         password2.innerHTML = '√';
-        z=true;
+        z = true;
       } else {
         password2.innerHTML = '两次密码输入不一致';
-        z=false;
-        
+        z = false;
+
       }
- if(z&&y&&z){
-let button1=document.getElementById('button');
-      button1.disabled=false;
-      button1.style.color="white"
- }
+      if (z && y && z) {
+        let button1 = document.getElementById('button');
+        button1.disabled = false;
+        button1.style.color = "white"
+      }
     }
- 
+
     function fn(that) {
-    let user = inputsObj[0].value;
-    let pwd = inputsObj[1].value;
-        console.log(user,pwd);
+      let user = inputsObj[0].value;
+      let pwd = inputsObj[1].value;
+      console.log(user, pwd);
       ajax(user, pwd);
     }
 
@@ -138,9 +213,9 @@ let button1=document.getElementById('button');
       //   console.log(xhr);
       xhr.open('post', 'register.php');
 
-      // 发送之前设置请求头,告诉浏览器当前参数的编码方式
+      // 设置请求头,告知浏览器当前参数的编码方式
       xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
-      // 构造参数  两个参数之间使用&连接
+      // 构造一个参数，是其变成一个可分割的字符串，以便于进行后面的数据处理
       let param = 'user=' + user + '&' + 'pwd=' + pwd;
       // 3 发送请求
       // console.log(param);
@@ -153,14 +228,22 @@ let button1=document.getElementById('button');
       xhr.onreadystatechange = function () {
 
         if (xhr.readyState == 4 && xhr.status == 200) {
-          //   console.log(xhr.status);
-          //   console.log(xhr.readyState);
-          // console.log(xhr.response);  
+          //获取验证数据库的返回值，返回1数据库中没有此数据，弹出注册成功
 
-          if (xhr.response == 1) {
-            alert('注册成功')
+          if (xhr.response == 1) {//注册成功
+
+            confirm1.style.display = 'block'
+            sure.onclick = function () {
+              // that.delete(eve.target);
+              confirm1.style.display = 'none'
+            }
+
           } else {
-            alert('用户名已经被使用')
+            confirm2.style.display = 'block'
+            sure1.onclick = function () {
+              // that.delete(eve.target);
+              confirm2.style.display = 'none'
+            }
           }
         }
       }

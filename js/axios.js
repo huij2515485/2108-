@@ -19,7 +19,6 @@ class axios {
         // 将数组中每个元素以 `&` 符号拼接，生成查询字符串结构
         params = params.join('&'); // username=admin&password=admin
       }
-      // 如果是 GET 数据，并存在向后端发送的数据，则将查询字符串以 ? 号拼接在 URL 后
       if (type === 'GET' && params) {
         url += `?${params}`
         params = null

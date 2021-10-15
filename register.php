@@ -20,14 +20,18 @@
         if(!(implode($arr1[$i])==$user)){
            $count=$count+1;
            
-        if($count=count($arr1)){
-            $sql= "insert into user (user,pwd) values('$user','$pwd')";
-            mysqli_query($link,$sql);
-            echo 1;
-            exit;
+                if($count==count($arr1)-1){
+                    $sql= "insert into user (user,pwd) values('$user','$pwd')";
+                    mysqli_query($link,$sql);
+                    echo 1;
+                    exit;
+                }else{
+                    echo '';
+            
+                    }
         }else{
             echo '';
-            
-        }
-    }}
+
+            }
+    }
  ?> 

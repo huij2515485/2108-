@@ -20,10 +20,24 @@
 //      }
      
 //     if(eve.target.className == 'delete'){
+
+//         let confirm = document.getElementById('confirm');
+//         confirm.innerHTML = `
+//     <p>确认删除？</p>
+//     <button onclick="this.delete(${eve.target})">确认</button>
+//     <button onclick="this.xiaoshi(confirm)">取消</button>
+//     `
+// //    this.delete(eve.target);
+//         // ;
 //         this.delete(eve.target);
 //     }
 // }
+
+// xiaoshi(confirm){
+//     confirm.style.display='none'
+// }
 // // 增加商品数量
+
 // add (target1) {
 //     // console.log(target1);
 //     let numObj = target1.previousElementSibling;

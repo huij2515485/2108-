@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/jquery-2.2.4.js"></script>
     <script src="js/axios.js"></script>
-    <script src="js/index.js"></script>
+    <!-- <script src="js/index.js"></script> -->
 
     <!-- 引入重置样式 -->
     <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/index.css">
+
     <link rel="stylesheet" href="css/iconfont.css">
     <link rel="stylesheet" href="css/common.css">
     <!-- <script src="js/jquery-2.2.4.js"></script> -->
@@ -557,6 +559,8 @@
                 </li>
             </ul>
             <script>
+
+                //动态向轮播左侧边栏中添加数据
                 var li = document.querySelectorAll('.list1-ul-li')
                 var hidden = document.querySelectorAll('.hidden')
 
@@ -571,7 +575,7 @@
                             // console.log(JSON.parse(data));
                             var ul = hidden[i].querySelectorAll('ul')
                             // console.log(ul);
-                            JSON.parse(data).forEach((goods, j) => {
+                            JSON.parse(data).forEach((goods, j) => {//其中有四个ul横向排列，判断拿来的当前数据的编号，将其放入对应的ul中
                                 //   console.log(goods.id);
                                 // console.log(j);
                                 if (j >= 0 && j <= 5) {
@@ -606,6 +610,8 @@
                                           </li>`
                                 }
                             });
+
+                            // 将数据追加到侧边栏中
                             ul[0].innerHTML = html1;
                             ul[1].innerHTML = html2;
                             ul[2].innerHTML = html3
@@ -783,7 +789,7 @@
             </div>
             <div id="show-right">
 
-                <script>
+                <script>//下方商品栏中动态添加商品
                     axios.get('./js/goods.json').then(data => {
                         // console.log(JSON.parse(data));
                         let html = '';
@@ -931,6 +937,5 @@
     </div>
     <p>让全球每个人都能享受到科技带来的美好生活</p>
 </div>
-    <link rel="stylesheet" href="css/index.css">
 </body>
 </html>

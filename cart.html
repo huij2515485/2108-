@@ -73,14 +73,9 @@
                                 </div>
                                 <div calss='goodsName' id='goodsName' style='width: 100px;height:42px;float: left;line-height:72px;white-space: nowrap;overflow:hidden;'> ${data.name}</div>
                                 <div class='moneyAndNum' style="line-height:72px">${data.price}元×${data.num}</div>
-                                    
-                                 
-                                 </td>
-                                    
+                                 </td>                              
                                 </tr>
-                                    
-                               
-                           
+
                             `;
                         // console.log(number,moneyAll);
 
@@ -88,8 +83,6 @@
                             number+=parseInt(`${data.num}`);
                             moneyAll+=parseInt(`${data.price*data.num}`)
                         // console.log(number,moneyAll);
-
-                        
 
                         });
                         var div = document.getElementById('cars')
@@ -112,22 +105,9 @@
                             div1[0].style.height+=Height+'px';
                             var number1=document.getElementById('allnum');
                         number1.innerHTML=`${number}`
-                            // console.log(div.inner); 
-                       
-                    //    console.log(div1);
-
-                    // console.log();
-                       
-                       
-                        // console.log(div.innerHTML);
-
                     </script>
                 </div>
 
-                <!-- <div class=""></div>
-                <script>
-                    $('.cart').on('mouseover',function(){})
-                </script> -->
             </ul>
 
         </div>
@@ -475,8 +455,6 @@
     <div id="photo">
         <img src="" alt="" id="img">
     </div>
-
-    <!-- 引入js -->
 
     <script>
 

@@ -12,15 +12,23 @@
 </head>
 
 <body>
+
     <div id="shopcart">
         <div class="container">
             <img src="images/logo.png" alt="">
             <span>我的购物车</span>
         </div>
         <table border="0" cellspacing="0" cellpadding="20">
+            <div id="confirm">
+                <p style="line-height: 140px;">确认删除？</p>
+                <div>
+                    <button id="sure" style="margin-right: 50px;background: #ff6700;color: white;">确定</button>
+                    <button id="not_sure">取消</button>
+                </div>
+            </div>
             <thead>
                 <tr>
-                    <td><input type="checkbox" name="" id="checkAll1" checked='checked'>全选</td>
+                    <td><input type="checkbox" name="" id="checkAll1" checked='checked' style=" cursor: pointer;">全选</td>
                     <td><img src="" alt="">产品图片</td>
                     <td>产品名称</td>
                     <td>价格</td>
@@ -36,7 +44,7 @@
                 </tr>
             </thead>
             <tbody>
-                <p>123</p>
+                <!-- <p>123</p> -->
             </tbody>
             <tfoot>
                 <tr>
@@ -77,14 +85,39 @@
                 }
 
                 if (eve.target.className == 'delete') {
-                    this.delete(eve.target);
+
+                    let confirm = document.getElementById('confirm');
+                    let sure = document.getElementById('sure')
+                    let NOsure = document.getElementById('not_sure')
+                    let body=document.getElementsByTagName('body')
+                    
+                    //   console.log(this);
+                    let that = this;
+                    confirm.style.display = 'block'
+                    sure.onclick = function () {
+
+                        that.delete(eve.target);
+                        confirm.style.display = 'none'
+
+                    }
+                    NOsure.onclick = function () {
+                        confirm.style.display = 'none'
+                    }
+                    //    this.delete(eve.target);
+                    // ;
+                    // 
                 }
             }
+
+
+
+
             // 增加商品数量
+
             add(target1) {
                 // console.log(target1);
                 let numObj = target1.previousElementSibling;
-                // console.log(numObj1 );
+                // console.log(numObj);
                 // console.log(numObj.innerHTML);
                 let num = numObj.innerHTML - 0 + 1;
                 // console.log(num);
@@ -94,7 +127,6 @@
                 let price = tdObj.previousElementSibling.innerHTML;
 
                 tdObj.nextElementSibling.innerHTML = (num - 0) * parseInt(price);
-                // console.log((tdObj.parentNode.children)[0].firstElementChild.checked);
                 let trObj = tdObj.parentNode;
                 // console.log(trObj);
                 this.total()
@@ -189,7 +221,6 @@
                 // console.log(this.oneChec);
                 let total_num = 0; //定义总数量为0
                 let total_price = 0; //定义总价为0
-                // 1 循环商品,找出选中的
                 this.oneChec.forEach(goods => {
                     //   console.log(goods);
                     if (goods.checked) { // 判断选中的商品
@@ -221,19 +252,22 @@
                         // console.log(this.checked);
                         if (this.checked) {
                             // 选取当前处于选中状态按钮
-                            num++;
+                            num++
                             // console.log(key);
                             // 让全选选中
                             //   console.log(num);
-                            
                             if (num % 2 == 0) {
                                 $('#checkAll1').prop("checked", true)
+
                             }
                             //   
+
                         } else {
                             num--;
                             // 取消全选
                             $('#checkAll1').prop("checked", false)
+
+
                         }
 
                         that.total();
@@ -248,7 +282,7 @@
                             $(".checOne").prop("checked", false);
 
                         }
-                        at++;
+                        at++
                         that.total();
 
                         return;
@@ -258,7 +292,7 @@
                             $(".checOne").prop("checked", true);
 
                         }
-                        at++;
+                        at++
                     }
                     that.total();
                 })
@@ -273,13 +307,13 @@
                 JSON.parse(cartG).forEach(data => {
                     // console.log(data);
                     html += `<tr goods='${data.id}'>
-                <td><input type='checkbox' class="checOne" checked=''></td>
+                <td><input type='checkbox' class="checOne" checked=''style=" cursor: pointer;"></td>
                 <td><img src="${data.src}"  style="height: 100px;width: 100px;"></td>
                 <td>${data.name}</td>
                 <td>${data.price}元</td>
-                <td><button class="jian">-</button>&nbsp;<span class='goods-num'> ${data.num}</span> <button class='add'>+</button></td>
+                <td><button class="jian" style=" cursor: pointer;">-</button>&nbsp;<span class='goods-num'> ${data.num}</span> <button class='add'style=" cursor: pointer;">+</button></td>
                 <td class='goods-price'>${data.num*data.price}</td>
-                <td><button class='delete'>删除</button></td>
+                <td><button class='delete' style=" cursor: pointer;">删除</button></td>
                 </tr>`;
                 });
                 // console.log(html);
