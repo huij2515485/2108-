@@ -28,9 +28,7 @@ for($i=0;$i<count($arr);$i++){
 if(implode($arr[$i])==$pwd&&implode($arr1[$i])==$user){
     echo 1;
     }
-// }else{
-//     // echo '';
-//     close($link)
+
 }
 
 ?>
